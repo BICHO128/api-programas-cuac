@@ -3,6 +3,10 @@
 API pública de solo lectura con el catálogo vigente de programas de la
 Corporación Universitaria Autónoma del Cauca (CUAC).
 
+Repositorio: <https://github.com/BICHO128/api-programas-cuac>
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/BICHO128/api-programas-cuac)
+
 ## Endpoint
 
 ```text
