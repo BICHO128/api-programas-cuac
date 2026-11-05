@@ -46,8 +46,8 @@ La respuesta mantiene la forma de la API anterior:
       "costoMatricula": 3536000,
       "activo": true,
       "estadoSnies": "Activo",
-      "imagen": "administracion",
-      "imagenR": "administracion",
+      "imagen": "http://localhost:3000/Carreras/administracion.png",
+      "imagenR": "administracion.png",
       "descripcion": "Formación para la dirección, administración y gestión estratégica de organizaciones.",
       "videoUrl": "https://www.youtube.com/watch?v=W82DiTm6liU",
       "updatedAt": "2026-11-04T23:13:10.356Z"
@@ -64,8 +64,12 @@ La respuesta mantiene la forma de la API anterior:
 - Todos los registros publicados tienen `activo: true` y `estadoSnies: "Activo"`.
 - Los 10 programas que ya existían en la API anterior conservan su `_id`, para
   que la sincronización de SIAC los actualice en lugar de duplicarlos.
-- `descripcion`, `imagen`, `imagenR` y `videoUrl` quedan en `null` cuando no hay
-  información disponible. No se inventó contenido.
+- Todas las carreras publican `imagen` como URL absoluta con el formato
+  `http://localhost:3000/Carreras/<archivo>` e `imagenR` con el nombre del
+  archivo. El origen se puede cambiar con `CUAC_IMAGENES_BASE_URL` al regenerar
+  el JSON.
+- `descripcion` y `videoUrl` quedan en `null` cuando no hay información
+  disponible. No se inventó contenido.
 - La duración de **Hotelería y Turismo** se tomó del registro SNIES 52378 porque
   el registro activo 51774 no la reporta. El campo `nota` del registro lo indica.
 - `modalidad` conserva la modalidad principal y `modalidades` lista las
@@ -113,6 +117,13 @@ El generador escribe `carreras.json` junto al script. Si los Excel no están en
 ```bash
 CUAC_FICHA_XLSX="C:\ruta\EDUINNOVA_ficha_programas_2026-2.xlsx"
 CUAC_SNIES_XLSX="C:\ruta\Programas (1).xlsx"
+```
+
+Las imágenes se publican por defecto en `http://localhost:3000/Carreras`. Para
+usar otro origen, define `CUAC_IMAGENES_BASE_URL` (sin barra final):
+
+```bash
+CUAC_IMAGENES_BASE_URL="https://sitio-cuac.vercel.app/Carreras" node generar-carreras.mjs
 ```
 
 ## Publicar en Vercel
